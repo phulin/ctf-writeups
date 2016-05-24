@@ -2,7 +2,7 @@
 
 > Welcome to b3s23.  Enter x,y coordinates.  Enter any other character to run.
 
-Basic interaction with the binary quickly indicates that the program interprets the input as the set of live cells on a Conway's Game of Life board. After some minor reverse engineering, we see that The board is stored as a 12100-bit array, in 110 rows of 110 bits each. The binary runs 15 iterations of Game of Life on the board, and then it jumps to the first byte of the board data structure. So we need to create a board that will have shellcode at the start of the board after the Game of Life iterations.
+Basic interaction with the binary quickly indicates that the program interprets the input as the set of live cells on a Conway's Game of Life board. After some minor reverse engineering, we see that the board is stored as a 12100-bit array, in 110 rows of 110 bits each. The binary runs 15 iterations of Game of Life on the board, and then it jumps to the first byte of the board data structure. So we need to create a board that will have shellcode at the start of the board after the Game of Life iterations.
 
 ## Game of Life
 Conway's Game of Life is a famous cellular automata game. The rules are simple. The game takes place on a square grid, and a set of cells is initially colored black, or alive. The rest of the cells are considered dead. The game proceeds in steps. Each turn, you count each cell's number of live neighbors. If a live cell has 0 or 1 neighbors, it dies (turns white) in the next step (underpopulation). If a live cell has 4 or more neighbors, it also dies in the next step (overpopulation). A dead cell with exactly three neighbors becomes alive (reproduction).
