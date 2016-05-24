@@ -13,7 +13,7 @@ This block has the implementation of the basic Game of Life rules, first countin
 (images/isgameoflife.png)
 
 ## Shellcode Evolution
-Since the entire point of Game of Life is that the evolution is difficult to predict(in fact, it's capable of representing Turing-complete computation), we need to set up the board carefully so it will evolve predictably. The easiest way to do this is to place only static structures on the board. Game of Life enthusiasts have created catalogs of all the small static patterns, which are known as "still-lifes". See http://codercontest.com/mniemiec/p1.htm for one useful example.
+Since the entire point of Game of Life is that the evolution is difficult to predict (in fact, it's capable of representing Turing-complete computation), we need to set up the board carefully so it will evolve predictably. The easiest way to do this is to place only static structures on the board. Game of Life enthusiasts have created catalogs of all the small static patterns, which are known as "still-lifes". See http://codercontest.com/mniemiec/p1.htm for one useful example.
 
 Execution effectively occurs across the board's rows, so we can place the code without regard to its Game of Life evolution and then use the surrounding rows to make the executing row static. We'll have to use jumps to get from each executing row to the next.
 
