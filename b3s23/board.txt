@@ -1,0 +1,32 @@
+>xxx   x   xxxx  | JNO $+1Eh;
+x   x x x  x  x                       x xx x xx x xx
+ x  x x x                       >   xxx x xx x xx x  | JMP $+5A;
+  x x xx                           x               xxx
+   x                               xx                x 
+
+PUSH $0; PUSH $68h; XOR EAX, EAX; OR AL, $2Fh; ADD AL, $0; JMP $+55h;                       x   x
+   xx xx           xx xx                   x          xx   xx x  x                  x xx x x x x x 
+>  xx x x          xx x x  xx x     xx   xxx          xx    x xxxx     x          xxx x xx x x x x|
+      x x             x x  x xx     xx  x                   x         x x        x          x   x
+      xx              xx                xx                 xx   xx     x         xx
+                                                                xx
+
+OR AH, $73h; PUSH AX; PUSH $0Bh; POP EAX; JMP $+56h;                              x   
+                           x              x      xx xx                    x xx x x x xx
+>       x       xx  xx   xxx  xx xx  xx  x x     xx x x     x xx x xx   xxx x xx x x xx |
+       x x      xx  xx  x     xx xx  xx   x         x x     xx x xx x  x          x    
+        x               xx                          xx                 xx         
+
+PUSH $6E69626Fh; ADD AL, 0; PUSH ESP; POP EBX; JNO $+56h;
+                                            xx     x                                  x   x
+       xx xx   xx x  x xx  xx                x    x x          xx     xx xx xx x     x x x x xx
+>      xx x     x xxxx xx   x  xx x  x xx xxx      x           x x x   x xx xx xxx   x x x x xx |
+          x     x          x   x xx  xx x x                       xx   x          x   x   x
+          xx   xx   xx xx  xx                                         xx         xx
+                    xx xx                                                     
+PUSH ESP; POP ECX; XOR EDX, EDX; PUSH EDX; PUSH EBX; PUSH ESP; POP ECX; INT $80h;
+                                                                 x
+     xx           xx  xx     x xx    xx  xx   x   xx xx      xx x x
+>    x x x   x xx  x  xx   xxx x  x  x x  x  x x  xx x x x   x xx  x     x          xx  xx xx |
+        xx   xx x x       x      xx     xx    x         xx        xx    x x         xx  xx xx
+                 x        xx                                             x
