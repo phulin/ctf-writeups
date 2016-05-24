@@ -8,6 +8,7 @@ Basic interaction with the binary quickly indicates that the program interprets 
 Conway's Game of Life is a famous cellular automata game. The rules are simple. The game takes place on a square grid, and a set of cells is initially colored black, or alive. The rest of the cells are considered dead. The game proceeds in steps. Each turn, you count each cell's number of live neighbors. If a live cell has 0 or 1 neighbors, it dies (turns white) in the next step (underpopulation). If a live cell has 4 or more neighbors, it also dies in the next step (overpopulation). A dead cell with exactly three neighbors becomes alive (reproduction).
 
 This block has the implementation of the basic Game of Life rules, first counting a cell's neighbors and then deciding whether to make it alive in the next step.
+
 ![Game of Life block]
 (images/isgameoflife.png)
 
