@@ -2,12 +2,12 @@
 
 > Welcome to b3s23.  Enter x,y coordinates.  Enter any other character to run.
 
+Basic interaction with the binary quickly indicates that the program interprets the input as the set of live cells on a Conway's Game of Life board. After some minor reverse engineering, we see that The board is stored as a 12100-bit array, in 110 rows of 110 bits each. The binary runs 15 iterations of Game of Life on the board, and then it jumps to the first byte of the board data structure. So we need to create a board that will have shellcode at the start of the board after the Game of Life iterations.
+
 ## Game of Life
 Conway's Game of Life is a famous cellular automata game. The rules are simple. The game takes place on a square grid, and a set of cells is initially colored black, or alive. The rest of the cells are considered dead. The game proceeds in steps. Each turn, you count each cell's number of live neighbors. If a live cell has 0 or 1 neighbors, it dies (turns white) in the next step (underpopulation). If a live cell has 4 or more neighbors, it also dies in the next step (overpopulation). A dead cell with exactly three neighbors becomes alive (reproduction).
 
-Basic interaction with the binary quickly indicates that the program interprets the input as the set of live cells on a Game of Life board. After some minor reverse engineering, we see that The board is stored as a 12100-bit array, in 110 rows of 110 bits each. The binary runs 15 iterations of Game of Life on the board, and then it jumps to the first byte of the board data structure. So we need to create a board that will have shellcode at the start of the board.
-
-This block has the implementation of the basic Game of Life rules, first counting a cell's neighbors and then deciding whether it was alive in the next step.
+This block has the implementation of the basic Game of Life rules, first counting a cell's neighbors and then deciding whether to make it alive in the next step.
 ![Game of Life block]
 (images/isgameoflife.png)
 
@@ -17,7 +17,7 @@ Since the entire point of Game of Life is that the evolution is difficult to pre
 Execution effectively occurs across the board's rows, so we can place the code without regard to its Game of Life evolution and then use the surrounding rows to make the executing row static. We'll have to use jumps to get from each executing row to the next.
 
 ## Shellcode Choice
-The shortest approach is to put code that calls read with the board as the destination and then send the real shellcode. Unfortunately, we didn't think of this during the competition, so we just put standard shellcode (`execve("/bin/sh", {"/bin/sh, NULL"}, ))`) on the board.
+The shortest approach is to put code that calls `read` with the board as the destination and then send the real shellcode. Unfortunately, we didn't think of this during the competition, so we just put standard shellcode (`execve("/bin/sh", {"/bin/sh, NULL"}, ))`) on the board.
 
 ## Still-life Construction
 Constructing still-lifes containing arbitrary code is actually somewhat difficult. For example, we could not find a small still-life that we could place on the board to create a sequence of five or more consecutive one-bits (live cells). So we just avoided any instructions or data with that many ones in a row.
@@ -30,7 +30,7 @@ xx x xx
 x xx xx
 ```
 
-Of course, any patterns separated by a gap of two columns will not interfere as well.
+Of course, any patterns separated by a gap of two columns or two rows will not interfere as well.
 
 ## Board
 Below, we have the board we used, with shellcode inline. Executing lines are marked as beginning with `>` characters and ending with `|` characters.
