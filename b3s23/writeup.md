@@ -1,4 +1,4 @@
-# bs323
+# b3s23
 
 > Welcome to b3s23.  Enter x,y coordinates.  Enter any other character to run.
 
