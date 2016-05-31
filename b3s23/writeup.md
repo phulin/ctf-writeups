@@ -18,7 +18,7 @@ Since the entire point of Game of Life is that the evolution is difficult to pre
 Execution effectively occurs across the board's rows, so we can place the code without regard to its Game of Life evolution and then use the surrounding rows to make the executing row static. We'll have to use jumps to get from each executing row to the next.
 
 ## Shellcode Choice
-The shortest approach is to put code that calls `read` with the board as the destination and then send the real shellcode. Unfortunately, we didn't think of this during the competition, so we just put standard shellcode (`execve("/bin/sh", {"/bin/sh, NULL"}, ))`) on the board.
+The shortest approach is to put code that calls `read` with the board as the destination and then send the real shellcode. Unfortunately, we didn't think of this during the competition, so we just put standard shellcode `execve("/bin/sh", {"/bin/sh, NULL"}, NULL)` on the board.
 
 ## Still-life Construction
 Constructing still-lifes containing arbitrary code is actually somewhat difficult. For example, we could not find a small still-life that we could place on the board to create a sequence of five or more consecutive one-bits (live cells). So we just avoided any instructions or data with that many ones in a row.
